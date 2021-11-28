@@ -384,6 +384,8 @@ object ColumnarExpressionConverter extends Logging {
         containsSubquery(b.left) || containsSubquery(b.right)
       case regexp: RegExpReplace =>
         containsSubquery(regexp.subject) || containsSubquery(regexp.regexp) || containsSubquery(regexp.rep) || containsSubquery(regexp.pos)
+      case s: String2TrimExpression =>
+        s.children.map(containsSubquery).exists(_ == true)
       case expr =>
         throw new UnsupportedOperationException(
           s" --> ${expr.getClass} | ${expr} is not currently supported.")
