@@ -62,7 +62,7 @@ class ColumnarProjection (
   } else {
     exprs
   }
-  val resultAttributes = expressionList.toList.zipWithIndex.map{case (expr, i) =>
+  val resultAttributes = expressionList.zipWithIndex.map{case (expr, i) =>
     if (renameResult) {
       ConverterUtils.getResultAttrFromExpr(expr, s"res_$i")
     } else {
