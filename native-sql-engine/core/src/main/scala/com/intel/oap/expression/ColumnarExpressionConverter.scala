@@ -43,7 +43,7 @@ object ColumnarExpressionConverter extends Logging {
           a.name)(a.exprId, a.qualifier, a.explicitMetadata)
       case a: AttributeReference =>
         logInfo(s"${expr.getClass} ${expr} is supported, no_cal is $check_if_no_calculation.")
-        if (attributeSeq != null) {
+        if (attributeSeq != null && a.name != "none") {
           val bindReference =
             BindReferences.bindReference(expr, attributeSeq, true)
           if (bindReference == expr) {
