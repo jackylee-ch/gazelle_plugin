@@ -187,6 +187,9 @@ class GazellePluginConfig(conf: SQLConf) extends Logging {
   val joinOptimizationThrottle: Integer =
     conf.getConfString("spark.oap.sql.columnar.joinOptimizationLevel", "12").toInt
 
+  val maxColumnNumInSort: Integer =
+    conf.getConfString("spark.oap.sql.columnar.maxColumnInSort", "10").toInt
+
   val batchSize: Int =
     conf.getConfString("spark.sql.execution.arrow.maxRecordsPerBatch", "10000").toInt
 

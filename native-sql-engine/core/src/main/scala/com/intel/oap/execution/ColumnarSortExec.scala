@@ -119,6 +119,10 @@ case class ColumnarSortExec(
             s"${attr.dataType} is not supported in ColumnarSortExec keys.")
       }
     })
+    if (output.size > columnarConf.maxColumnNumInSort) {
+      throw new UnsupportedOperationException(
+        s"ColumnarSortExec cannot deal with too many columns: ${output.size}")
+    }
   }
 
   var allLiteral = true
